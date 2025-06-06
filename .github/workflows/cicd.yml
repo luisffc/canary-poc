@@ -23,4 +23,4 @@ jobs:
           context: ./service_a
           file: ./service_a/Dockerfile
           push: true
-          tags: ${{ steps.ecr-login.outputs.registry }}/service_a:{{ github.sha }}
+          tags: ${{ steps.ecr-login.outputs.registry }}/service_a:${{ github.sha }}
