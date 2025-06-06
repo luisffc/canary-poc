@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: aws-actions/aws-actions/amazon-ecr-login@v2
+      - uses: aws-actions/amazon-ecr-login@v2
         id: ecr-login
         with:
           # TODO add your AWS credentials to the repository secrets
@@ -29,5 +29,8 @@ jobs:
           file: ./service_a/Dockerfile
           push: true
           # TODO dynamically set the tag based on the registry and the image name
-          tags: ${{ steps.ecr-login.outputs.registry }}/demo-repo:${{ github.sha }}
+          tags: |
+            ${{ steps.ecr-login.outputs.registry }}/demo-repo:${{ github.sha }}
+            ${{ steps.ecr-login.outputs.registry }}/demo-repo:latest
+
           # tags: 593793047834.dkr.ecr.us-east-1.amazonaws.com/demo-repo:${{ github.sha }}
