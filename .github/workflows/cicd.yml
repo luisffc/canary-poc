@@ -18,7 +18,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      - runs: |
+      - run: |
           echo ${{ steps.ecr-login }}
           echo ${{ steps.ecr-login.outputs }}
           echo ${{ steps.ecr-login.outputs.registry }}
