@@ -30,4 +30,4 @@ jobs:
           push: true
           # TODO dynamically set the tag based on the registry and the image name
           # tags: ${{ steps.ecr-login.outputs.registry }}/service_a:${{ github.sha }}
-          tags: 593793047834.dkr.ecr.us-east-1.amazonaws.com/service_a:${{ github.sha }}
+          tags: 593793047834.dkr.ecr.us-east-1.amazonaws.com/demo-repo:${{ github.sha }}
