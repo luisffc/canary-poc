@@ -27,5 +27,7 @@ jobs:
         with:
           context: ./service_a
           file: ./service_a/Dockerfile
-          push: true
-          tags: ${{ steps.ecr-login.outputs.registry }}/service_a:${{ github.sha }}
+          # push: true
+          # TODO dynamically set the tag based on the registry and the image name
+          tags: 593793047834.dkr.ecr.us-east-1.amazonaws.com/service_a:${{ github.sha }}
+          # tags: ${{ steps.ecr-login.outputs.registry }}/service_a:${{ github.sha }}
