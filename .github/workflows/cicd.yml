@@ -1,0 +1,25 @@
+name: CI/CD
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        id: ecr-login
+        with:
+          # TODO add your AWS credentials to the repository secrets
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./service_a
+          file: ./service_a/Dockerfile
+          push: true
+          tags: ${{ ecr-login.outputs.registry }}/service_a:{{ github.sha }}
