@@ -18,6 +18,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - runs: |
+          echo ${{ steps.ecr-login }}
+          echo ${{ steps.ecr-login.outputs }}
+          echo ${{ steps.ecr-login.outputs.registry }}
+
       - uses: docker/build-push-action@v6
         with:
           context: ./service_a
